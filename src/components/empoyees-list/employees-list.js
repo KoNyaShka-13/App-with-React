@@ -5,7 +5,8 @@ const EmployeesList = ({data}) => {//Берем массив для перебо
    
     const elements = data.map(item => {//При помощи map перебираем элементы массива
         return (
-            <EmployeesListItem name={item.name} salary={item.salary}/>
+//            <EmployeesListItem name={item.name} salary={item.salary}/>
+            <EmployeesListItem {...item}/>//Доплнительный вариант разворачивания данных, но при помощи ... (spread оператор)
         )
     })
 
