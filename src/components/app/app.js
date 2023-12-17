@@ -8,9 +8,9 @@ import './app.css';
 function App() {
 
     const data = [//Создали массив и настроили его в employees-list.js для динамического отбраженияданных
-        {name: 'Дмитрий Д.', salary: 5000, increase: false},
-        {name: 'Михаил С.', salary: 990, increase: false},
-        {name: 'Мария Я.', salary: 2400, increase: true},
+        {name: 'Дмитрий Д.', salary: 5000, increase: false, id: 1},
+        {name: 'Михаил С.', salary: 990, increase: false, id: 2},
+        {name: 'Мария Я.', salary: 2400, increase: true, id: 3},
     ];
 
     return (
