@@ -1,23 +1,52 @@
+import { Component } from 'react';
+
 import './employees-add-form.css';
 
-const EmployeesAddForm = () => {
-    return (
-        <div className="app-add-form">
-            <h3>Добавьте нового сотрудника</h3>
-            <form
-                className="add-form d-flex">
-                <input type="text"
-                    className="form-control new-post-label"
-                    placeholder="Как его зовут?" />
-                <input type="number"
-                    className="form-control new-post-label"
-                    placeholder="З/П в $?" />
+class EmployeesAddForm extends Component {
 
-                <button type="submit"
-                        className="btn btn-outline-light">Добавить</button>
-            </form>
-        </div>
-    )
+    constructor(props) {//Создаем конструктор, в котором будут состояния для создания новых сотрудников
+        super(props);
+        this.state = {
+            name: '',
+            salary: ''
+        }
+    }
+
+    onValueChange = (e) => {//Будет принимать аргумент объекта события, а затем изменять состояние
+        this.setState({//Можно и через коллбэк функцию
+            //Пример записи свойств в объект, когда свойство составное из нескольких объектов, как в нашем случае
+            [e.target.name]: e.target.value //Так как к разным даннм атрибута будет только одно обращение, нужно создать один атрибут, от которого будем отталкиваться, в нашем случае name
+        }) 
+    }
+
+    render() {
+
+        const {name, salary} = this.state;
+
+        return (
+            <div className="app-add-form">
+                <h3>Добавьте нового сотрудника</h3>
+                <form
+                    className="add-form d-flex">
+                    <input type="text"
+                        className="form-control new-post-label"
+                        placeholder="Как его зовут?" 
+                        name="name"
+                        value={name}
+                        onChange={this.onValueChange}/>
+                    <input type="number"
+                        className="form-control new-post-label"
+                        placeholder="З/П в $?" 
+                        name="salary"
+                        value={salary}
+                        onChange={this.onValueChange}/>
+    
+                    <button type="submit"
+                            className="btn btn-outline-light">Добавить</button>
+                </form>
+            </div>
+        )
+    }
 }
 
 export default EmployeesAddForm;
