@@ -54,6 +54,14 @@ class App extends Component {
         });
     }
 
+    onToggleIncrease = (id) => {//Будет изменять инкрис на противоположный
+        console.log(`Increase this ${id}`);
+    }
+
+    onToggleRise = (id) => {//Будет изменять райс на противоположный
+        console.log(`Rise this ${id}`);
+    }
+
     render() {
         return (
             <div className='app'>
@@ -66,7 +74,9 @@ class App extends Component {
     
                 <EmployeesList 
                     data={this.state.data}
-                    onDelete={this.deleteItem}/>
+                    onDelete={this.deleteItem}
+                    onToggleIncrease={this.onToggleIncrease}
+                    onToggleRise={this.onToggleRise}/>
                 <EmployeesAddForm onAdd={this.addItem}/>
             </div>
         )
