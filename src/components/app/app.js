@@ -12,9 +12,9 @@ class App extends Component {
         super(props);
         this.state = {
             data: [//Создали массив и настроили его в employees-list.js для динамического отбраженияданных
-                {name: 'Дмитрий Д.', salary: 5000, increase: false, id: 1},
-                {name: 'Михаил С.', salary: 990, increase: false, id: 2},
-                {name: 'Мария Я.', salary: 2400, increase: true, id: 3},
+                {name: 'Дмитрий Д.', salary: 5000, increase: false, rise: false, id: 1},
+                {name: 'Михаил С.', salary: 990, increase: false, rise: false, id: 2},
+                {name: 'Мария Я.', salary: 2400, increase: true, rise: false, id: 3}
             ]
         }
         this.maxId =4;
@@ -44,6 +44,7 @@ class App extends Component {
             name, 
             salary,
             increase: false,
+            rise: false, 
             id: this.maxId++
         }
         this.setState(({data}) => {//записываем в массив нового пользователя
@@ -55,17 +56,46 @@ class App extends Component {
     }
 
     onToggleIncrease = (id) => {//Будет изменять инкрис на противоположный
-        console.log(`Increase this ${id}`);
+    //Пример создания и добавления нового элемента
+    //this.setState(({data}) =>{
+        //    
+        //const index = data.findIndex(elem => elem.id === id);//Получаем индекс
+        //    
+        //const old = data[index];//Берем индекс и оставляем ее, чтобы не нарушать принцип иммутабельности
+        //const newItem = {...old, increase: !old.increase};//Делаем копию объекта
+        //const newArr = [...data.slice(0, index), newItem, ...data.slice(index + 1)];//Добавляем в массив
+        //    
+        //return {//Возвращаем
+        //    data: newArr
+        //}
+    //})
+    this.setState(({data}) =>({//Другой способ создания нового объекта
+        data: data.map(item => {//При помощь мар создаем копию
+            if (item.id === id) {//Если это нужная копия, то мы ее изменяем
+                return {...item, increase: !item.increase}
+            }
+            return item;//Возвращаем
+        })
+    }))
     }
 
     onToggleRise = (id) => {//Будет изменять райс на противоположный
-        console.log(`Rise this ${id}`);
+        this.setState(({data}) =>({//Другой способ создания нового объекта
+            data: data.map(item => {//При помощи мар создаем копию
+                if (item.id === id) {//Если это нужная копия, то мы ее изменяем
+                    return {...item, rise: !item.rise}
+                }
+                return item;//Возвращаем
+            })
+        }))
     }
 
     render() {
+        const employees = this.state.data.length;//Узнаем общее число сотрудников
+        const increased = this.state.data.filter(item => item.increase).length//Фильтр вернет массив с положительным параметром инкрис
         return (
             <div className='app'>
-                <AppInfo/>
+                <AppInfo employees={employees} increased={increased}/>
     
                 <div className='search-panel'>
                     <SearchPanel/>

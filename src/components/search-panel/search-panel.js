@@ -1,5 +1,5 @@
 import './search-panel.css';
-
+//Панель поиска
 const SearchPanel = () => {
     return (
         <input type="text" 

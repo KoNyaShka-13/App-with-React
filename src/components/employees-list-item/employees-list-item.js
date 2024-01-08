@@ -1,15 +1,9 @@
-import { Component } from 'react';
-
 import './employees-list-item.css';
 
-// const EmployeesListItem = (props) => { Можно через props, только тогда необходимо будет указывать props.name / props.salary
+ const EmployeesListItem = (props) => {// Можно через props, только тогда необходимо будет указывать props.name / props.salary
     //const EmployeesListItem = ({name, salary, increase}) => { // Синтаксис дуструктуризации, то есть мы присваиваем массив или объект, а в моем случае пропс, разбив его на части
-class EmployeesListItem extends Component{
-        
 
-    render() {
-        const { name, salary, onDelete, onToggleIncrease, onToggleRise} = this.props;//Убираем increase, так как он теперь будет определяться внутри компонента при помощи логики
-        const {increase, rise} = this.state;
+        const { name, salary, onDelete, onToggleIncrease, onToggleRise, increase, rise} = props;//Убираем increase, так как он теперь будет определяться внутри компонента при помощи логики
 
         let classNames = "list-group-item d-flex justify-content-between";//Это все нужно для добавления классаа increase
         if (increase) {
@@ -18,8 +12,6 @@ class EmployeesListItem extends Component{
         if (rise) {
             classNames += ' like';//Ставим условие, а класс пишем через пробел, так как без пробела классы слипнутся в один большой
         }
-
-
 
         return ( //Ставим classNames, который будет изменяться
         <li className={classNames}> 
@@ -41,7 +33,5 @@ class EmployeesListItem extends Component{
             </div>
         </li>
         )
-    }
-} 
-
+    } 
 export default EmployeesListItem;
