@@ -1,7 +1,7 @@
 import EmployeesListItem from "../employees-list-item/employees-list-item";
 import "./employees-list.css";
 
-const EmployeesList = ({data, onDelete, onToggleIncrease, onToggleRise}) => {//Берем массив для перебора
+const EmployeesList = ({data, onDelete, onToggleProp}) => {//Берем массив для перебора
    
     const elements = data.map(item => {//При помощи map перебираем элементы массива
         const {id, ...itemProps} = item;//Достаем id, остальное разворачиваем в виде item
@@ -10,9 +10,8 @@ const EmployeesList = ({data, onDelete, onToggleIncrease, onToggleRise}) => {//�
             <EmployeesListItem 
                 key={id} 
                 {...itemProps}
-                onDelete={() => onDelete(id)}//Доплнительный вариант разворачивания данных, но при помощи ... (spread оператор)
-                onToggleIncrease={() => onToggleIncrease(id)}
-                onToggleRise={() => onToggleRise(id)}/>
+                onDelete={() => onDelete(id)}//Доплнительный вариант разворачивания данных, но при помощи ... (spread оператор) 
+                onToggleProp={(e) => onToggleProp(id, e.currentTarget.getAttribute('data-toggle'))}/>
                 )
     })
 //Допускается такой вариант, если на бекенде не написали id, а маркировка нужна. Мы просто создаем свою маркировку при помощи i
